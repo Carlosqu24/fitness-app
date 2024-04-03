@@ -11,7 +11,7 @@ const ExercisesSelection = ({ groupedExercisesList }: ExercisesSelectionProps) =
     const [selectedExercisesList, setSelectedExercisesList] = useState<any[]>([])
 
     const handleSelectExercise = (exercise: string) => {
-        setSelectedExercisesList([...new Set( [...selectedExercisesList, exercise] ) ])
+        setSelectedExercisesList([...new Set([...selectedExercisesList, exercise])])
     }
 
     return (
@@ -21,29 +21,36 @@ const ExercisesSelection = ({ groupedExercisesList }: ExercisesSelectionProps) =
             <div>
                 <h2 className={`mb-3 ${HEADINGS.H3} font-bold`}>Exercises Selection</h2>
                 <div
-                    // className='grid gap-4 sm:grid-cols-2 sm:gap-4'
+                // className='grid gap-4 sm:grid-cols-2 sm:gap-4'
                 >
                     {
-                        groupedExercisesList
-                            .map(([category, exercises]: any[], index: any) => (
-                                <div key={index}>
-                                    <h2 className='mt-8 mb-2 font-bold capitalize'>{category}</h2>
-                                    <div className=''>
-                                        {exercises.map((exercise: any, index: any) => (
-                                            <div key={index}
-                                                className={`
+                        groupedExercisesList.length > 0
+                            ?
+                            groupedExercisesList
+                                .map(([category, exercises]: any[], index: any) => (
+                                    <div key={index}>
+                                        <h2 className='mt-8 mb-2 font-bold capitalize'>{category}</h2>
+                                        <div className=''>
+                                            {
+                                                exercises.map((exercise: any, index: any) => (
+                                                    <div key={index}
+                                                        className={`
                                                     ${DEFAULT_CARDS_STYLES} 
                                                     mt-4 
                                                 `}
-                                                onClick={() => handleSelectExercise(exercise)}
-                                            >
-                                                {/* Render the exercise data here */}
-                                                <p>{exercise.name}</p>
-                                            </div>
-                                        ))}
+                                                        onClick={() => handleSelectExercise(exercise)}
+                                                    >
+                                                        {/* Render the exercise data here */}
+                                                        <p>{exercise.name}</p>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))
+                            : <h3>Loading...</h3>
+
+                    }
                 </div></div>
             <div>
                 <h3 className={`mb-3 ${HEADINGS.H3} font-bold`}>Exercises Selected</h3>
