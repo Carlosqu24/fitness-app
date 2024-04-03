@@ -2,8 +2,30 @@
 
 
 # Database Schema
-Frontend
+## Supabase
 
+Emails {
+    id: uuid
+    created_at: timestamp with timedate
+    email: varchar
+}
+
+Exercises {
+    id: uuid
+    created_at: timestamp with timedate
+    name: varchar
+    targetMuscles: TargetMuscles
+    averageAmountCaloriesBurn: number***
+}
+
+TargetMuscles {
+    list: string[]
+    main: string
+}
+
+# Entities
+
+## Frontnend
 Routine {
     id: string,
     name: string,
@@ -12,12 +34,29 @@ Routine {
     estimatedTime: number
     exercisesList: Exercise[]
     workoutSessionLogsList: WorkoutSessionLog[]
+
+    // New
+    frecuencyDaysList: ["Tuesday", "Sunday"]
+}
+
+That's not in a routine
+DatabaseExercises {
+    id: string
+    name: string
+    estimatedTime: number
+    targetMuscles: DatabaseTargetMuscles
+}
+
+DatabaseTargetMuscles {
+    list: string[]
+    main: string
 }
 
 Exercise {
     id: string
     name: string
     estimatedTime: number
+    sets: number
 }
 
 WorkoutSessionLog {
@@ -39,12 +78,5 @@ WorkoutSessionSet {
     weightUnit: string;
 }
 
-
-
-
-Supabase credentials
-
-fitness-app
-Password: QuieroSer4stronomo2023XD
 
 # API Documentation
