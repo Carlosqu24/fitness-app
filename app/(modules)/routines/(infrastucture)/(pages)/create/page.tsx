@@ -5,6 +5,7 @@ import ExercisesSelection from './components/FormSteps/ExercisesSelection/Exerci
 import DaysFrequencySelection from './components/FormSteps/DaysFrequencySelection/DaysFrequencySelection'
 import { supabase } from '@/app/(config)/supabase'
 import { groupExercisesList } from '../../utils/utils'
+import { STEPPERFORM_BUTTONS_STYLES } from './(styles)'
 
 enum CREATE_ROUTINE_STEPS {
     EXERCISES_SELECTION = 0,
@@ -57,15 +58,16 @@ const page = () => {
             {
                 step > CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && (
                     <button
-                        className='mr-2'
+                        className={STEPPERFORM_BUTTONS_STYLES}
                         onClick={prevStep}
-                    >back</button>
+                    >Prev</button>
                 )
             }
 
             <button
+                className={STEPPERFORM_BUTTONS_STYLES}
                 onClick={nextStep}
-            >next</button>
+            >Next</button>
         </div>
     )
 }
