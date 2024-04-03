@@ -6,6 +6,7 @@ import DaysFrequencySelection from './components/FormSteps/DaysFrequencySelectio
 import { supabase } from '@/app/(config)/supabase'
 import { groupExercisesList } from '../../utils/utils'
 import { STEPPERFORM_BUTTONS_STYLES } from './(styles)'
+import { HEADINGS } from '@/app/(styles)/variables'
 
 enum CREATE_ROUTINE_STEPS {
     EXERCISES_SELECTION = 0,
@@ -39,7 +40,7 @@ const page = () => {
 
     return (
         <div>
-            <h2>CREATE ROUTINE FORM</h2> 
+            <h2 className={`mb-3 ${HEADINGS.H2} font-bold`}>Create Routine</h2> 
 
             {
                 step === CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && (

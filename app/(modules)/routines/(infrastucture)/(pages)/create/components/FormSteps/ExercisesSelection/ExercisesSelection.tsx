@@ -1,5 +1,5 @@
 "use client"
-import { DEFAULT_CARDS_STYLES } from '@/app/(styles)/variables'
+import { DEFAULT_CARDS_STYLES, HEADINGS } from '@/app/(styles)/variables'
 import React, { useState } from 'react'
 
 interface ExercisesSelectionProps {
@@ -16,10 +16,10 @@ const ExercisesSelection = ({ groupedExercisesList }: ExercisesSelectionProps) =
 
     return (
         <div
-            className='grid gap-4 sm:grid-cols-2 sm:gap-4'
+            className='grid gap-4 grid-cols-1 lg:grid-cols-2 sm:gap-4'
         >
             <div>
-                <h2 className='mb-3'>ExercisesSelection</h2>
+                <h2 className={`mb-3 ${HEADINGS.H3} font-bold`}>Exercises Selection</h2>
                 <div
                     // className='grid gap-4 sm:grid-cols-2 sm:gap-4'
                 >
@@ -46,7 +46,7 @@ const ExercisesSelection = ({ groupedExercisesList }: ExercisesSelectionProps) =
                             ))}
                 </div></div>
             <div>
-                <h3 className='mb-3'>Selected</h3>
+                <h3 className={`mb-3 ${HEADINGS.H3} font-bold`}>Exercises Selected</h3>
                 <div className='grid gap-4 sm:grid-cols-1 sm:gap-4'>
                     {
                         selectedExercisesList.length > 0
