@@ -31,7 +31,10 @@ const ExercisesSelection = ({ groupedExercisesList }: ExercisesSelectionProps) =
                                     <div className=''>
                                         {exercises.map((exercise: any, index: any) => (
                                             <div key={index}
-                                                className={`${DEFAULT_CARDS_STYLES} mt-4`}
+                                                className={`
+                                                    ${DEFAULT_CARDS_STYLES} 
+                                                    mt-4 
+                                                `}
                                                 onClick={() => handleSelectExercise(exercise)}
                                             >
                                                 {/* Render the exercise data here */}
