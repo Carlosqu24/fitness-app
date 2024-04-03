@@ -11,7 +11,7 @@ const ExercisesSelection = ({ groupedExercisesList }: ExercisesSelectionProps) =
     const [selectedExercisesList, setSelectedExercisesList] = useState<any[]>([])
 
     const handleSelectExercise = (exercise: string) => {
-        setSelectedExercisesList([...selectedExercisesList, exercise])
+        setSelectedExercisesList([...new Set( [...selectedExercisesList, exercise] ) ])
     }
 
     return (
@@ -27,7 +27,7 @@ const ExercisesSelection = ({ groupedExercisesList }: ExercisesSelectionProps) =
                         groupedExercisesList
                             .map(([category, exercises]: any[], index: any) => (
                                 <div key={index}>
-                                    <h2 className='my-2 font-bold capitalize'>{category}</h2>
+                                    <h2 className='mt-8 mb-2 font-bold capitalize'>{category}</h2>
                                     <div className=''>
                                         {exercises.map((exercise: any, index: any) => (
                                             <div key={index}
