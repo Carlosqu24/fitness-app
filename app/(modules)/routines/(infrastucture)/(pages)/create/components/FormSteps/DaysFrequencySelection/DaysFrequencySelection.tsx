@@ -15,7 +15,7 @@ const DaysFrequencySelection = (
     <div>
       <h3 className={`mb-4 ${HEADINGS.H3} font-bold`}>Days Frequency Selection</h3>
 
-      <div className='grid gap-4 grid-cols-3 lg:grid-cols-2 sm:gap-4'>
+      <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-4'>
       {
         daysList.map((day, index) => (
           <div 
