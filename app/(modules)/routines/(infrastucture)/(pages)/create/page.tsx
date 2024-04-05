@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import ButtonsGroup from './components/FormSteps/ButtonsGroup/ButtonsGroup'
 import { useRoutines } from '../../(hooks)/RoutinesContext'
 import { useForm } from '@/app/(hooks)/useForm'
+import MainInformation from './components/FormSteps/MainInformation/MainInformation'
 
 export enum CREATE_ROUTINE_STEPS {
     MAIN_INFORMATION = 0,
@@ -109,36 +110,11 @@ const page = () => {
 
             {
                 step === CREATE_ROUTINE_STEPS.MAIN_INFORMATION && (
-                    <div>
-                        <div>
-                            <label htmlFor="name">Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                id="name"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Test name"
-                                required={true}
-                                value={formValues.name}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="description">Description</label>
-                            <input
-                                type="text"
-                                name="description"
-                                id="description"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Test description"
-                                required={false}
-                                value={formValues.description}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                    
-                    </div>
+                    <MainInformation
+                        name={formValues.name}
+                        description={formValues.description}
+                        handleInputChange={handleInputChange}
+                    />
                 )
             }
 
