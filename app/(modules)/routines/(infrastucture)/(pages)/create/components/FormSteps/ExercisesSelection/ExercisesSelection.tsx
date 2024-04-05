@@ -4,15 +4,15 @@ import React, { useState } from 'react'
 
 interface ExercisesSelectionProps {
     groupedExercisesList: any
+    selectedExercisesList: any[]
+    handleSelectExercise: (exercise: any) => void
 }
 
-const ExercisesSelection = ({ groupedExercisesList }: ExercisesSelectionProps) => {
+const ExercisesSelection = ({ 
+    groupedExercisesList, selectedExercisesList, handleSelectExercise 
+}: ExercisesSelectionProps) => {
 
-    const [selectedExercisesList, setSelectedExercisesList] = useState<any[]>([])
-
-    const handleSelectExercise = (exercise: string) => {
-        setSelectedExercisesList([...new Set([...selectedExercisesList, exercise])])
-    }
+    
 
     return (
         <div

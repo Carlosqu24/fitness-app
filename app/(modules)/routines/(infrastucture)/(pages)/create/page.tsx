@@ -38,6 +38,34 @@ const page = () => {
         handleData()
     }, [])
 
+    const [selectedExercisesList, setSelectedExercisesList] = useState<any[]>([])
+
+    const handleSelectExercise = (exercise: string) => {
+        setSelectedExercisesList([...new Set([...selectedExercisesList, exercise])])
+    }
+
+    const hasAnyExerciseBeenSelected = selectedExercisesList.length > 0
+
+
+    // Frequency Days Selection
+    const daysList = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
+  
+    const [selectedDays, setSelectedDays] = useState([]);
+  
+    const handleDayClick = (day:any) => {
+      setSelectedDays((prevDays: any) => {
+        if (prevDays.includes(day)) {
+          // If the day is already selected, unselect it
+          return prevDays.filter((d: any) => d !== day);
+        } else {
+          // If the day is not selected, select it
+          return [...prevDays, day];
+        }
+      });
+    };
+
+    const hasAnyDayBeenSelected = selectedDays.length > 0
+
     return (
         <div>
             <h2 className={`mb-3 ${HEADINGS.H2} font-bold`}>Create Routine</h2> 
@@ -46,13 +74,19 @@ const page = () => {
                 step === CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && (
                     <ExercisesSelection 
                         groupedExercisesList={groupedExercisesList}
+                        selectedExercisesList={selectedExercisesList}
+                        handleSelectExercise={handleSelectExercise}
                     />
                 )
             }
 
             {
                 step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && (
-                    <DaysFrequencySelection />
+                    <DaysFrequencySelection 
+                        daysList={daysList}
+                        selectedDaysList={selectedDays}
+                        handleDayClick={handleDayClick}
+                    />
                 )
             }
 
@@ -67,7 +101,13 @@ const page = () => {
 
             <button
                 className={STEPPERFORM_BUTTONS_STYLES}
-                onClick={nextStep}
+                onClick={() => {
+                    (
+                        step === CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && hasAnyExerciseBeenSelected ||
+                        step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && hasAnyDayBeenSelected
+                    )
+                        && nextStep()
+                }}
             >Next</button>
         </div>
     )
