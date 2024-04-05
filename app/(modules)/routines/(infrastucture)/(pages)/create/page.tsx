@@ -9,8 +9,9 @@ import { STEPPERFORM_BUTTONS_STYLES } from './(styles)'
 import { HEADINGS } from '@/app/(styles)/variables'
 
 import { useRouter } from 'next/navigation'
+import ButtonsGroup from './components/FormSteps/ButtonsGroup/ButtonsGroup'
 
-enum CREATE_ROUTINE_STEPS {
+export enum CREATE_ROUTINE_STEPS {
     EXERCISES_SELECTION = 0,
     DAYS_FREQUENCY_SELECTION = 1,
 }
@@ -103,41 +104,14 @@ const page = () => {
                 )
             }
 
-            {
-                step > CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && (
-                    <button
-                        className={STEPPERFORM_BUTTONS_STYLES}
-                        onClick={prevStep}
-                    >Prev</button>
-                )
-            }
-
-            {
-                step !== CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION &&
-                <button
-                className={STEPPERFORM_BUTTONS_STYLES}
-                onClick={() => {
-                    (
-                        step === CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && hasAnyExerciseBeenSelected ||
-                        step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && hasAnyDayBeenSelected
-                    )
-                        && nextStep()
-                }}
-            >Next</button>
-            }
-
-            {
-                step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && (
-                    <button
-                        className={STEPPERFORM_BUTTONS_STYLES}
-                        onClick={()=> {
-                            step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && 
-                                hasAnyDayBeenSelected && 
-                                handleFinish()
-                        }}
-                    >Finish</button>
-                )
-            }
+            <ButtonsGroup
+                step={step}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                hasAnyExerciseBeenSelected={hasAnyExerciseBeenSelected}
+                hasAnyDayBeenSelected={hasAnyDayBeenSelected}
+                handleFinish={handleFinish}
+            />
         </div>
     )
 }
