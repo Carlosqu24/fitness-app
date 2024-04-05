@@ -10,10 +10,13 @@ import { HEADINGS } from '@/app/(styles)/variables'
 
 import { useRouter } from 'next/navigation'
 import ButtonsGroup from './components/FormSteps/ButtonsGroup/ButtonsGroup'
+import { useRoutines } from '../../(hooks)/RoutinesContext'
+import { useForm } from '@/app/(hooks)/useForm'
 
 export enum CREATE_ROUTINE_STEPS {
-    EXERCISES_SELECTION = 0,
-    DAYS_FREQUENCY_SELECTION = 1,
+    MAIN_INFORMATION = 0,
+    EXERCISES_SELECTION = 1,
+    DAYS_FREQUENCY_SELECTION = 2,
 }
 
 const page = () => {
@@ -21,11 +24,19 @@ const page = () => {
 
     const router = useRouter()
 
+    const { values: formValues, handleInputChange } = useForm<{name: string, description: string}>({
+        name: '',
+        description: ''
+    })
+
+
     const {
         step,
         nextStep,
-        prevStep
+        prevStep,
     } = useStepperForm()
+
+    const { addRoutine } = useRoutines()
 
     const handleGetExercisesData = async () => {
         const { data } = await supabase.from('Exercises').select()
@@ -75,14 +86,61 @@ const page = () => {
     const handleFinish = () => {
         alert('Routine created')
 
-        // Save routine to the database
-
-        // Navigate to the routines page
+        addRoutine({
+            // days: selectedDays
+            id: crypto.randomUUID(),
+            name: formValues.name,
+            description: formValues.description,
+            totalExercisesCount: 0,
+            estimatedCaloriesToBurn: 0,
+            estimatedTime: 0,
+            exercisesList: selectedExercisesList,
+            workoutSessionLogsList: []
+        })
+        
         router.push('/routines')
     }
+
+    const isMainInformationValid = formValues.name !== ''
+
     return (
         <div>
             <h2 className={`mb-3 ${HEADINGS.H2} font-bold`}>Create Routine</h2>
+
+            {
+                step === CREATE_ROUTINE_STEPS.MAIN_INFORMATION && (
+                    <div>
+                        <div>
+                            <label htmlFor="name">Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Test name"
+                                required={true}
+                                value={formValues.name}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="description">Description</label>
+                            <input
+                                type="text"
+                                name="description"
+                                id="description"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Test description"
+                                required={false}
+                                value={formValues.description}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                    
+                    </div>
+                )
+            }
 
             {
                 step === CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && (
@@ -110,6 +168,7 @@ const page = () => {
                 prevStep={prevStep}
                 hasAnyExerciseBeenSelected={hasAnyExerciseBeenSelected}
                 hasAnyDayBeenSelected={hasAnyDayBeenSelected}
+                isMainInformationValid={isMainInformationValid}
                 handleFinish={handleFinish}
             />
         </div>

@@ -8,6 +8,7 @@ interface ButtonsGroupProps {
     prevStep: () => void
     hasAnyExerciseBeenSelected: boolean
     hasAnyDayBeenSelected: boolean
+    isMainInformationValid: boolean
     handleFinish: () => void
 
 }
@@ -18,12 +19,13 @@ const ButtonsGroup = ({
     prevStep,
     hasAnyExerciseBeenSelected,
     hasAnyDayBeenSelected,
+    isMainInformationValid,
     handleFinish,
 }: ButtonsGroupProps) => {
     return (
         <div>
             {
-                step > CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && (
+                step > CREATE_ROUTINE_STEPS.MAIN_INFORMATION && (
                     <button
                         className={STEPPERFORM_BUTTONS_STYLES}
                         onClick={prevStep}
@@ -37,6 +39,7 @@ const ButtonsGroup = ({
                     className={STEPPERFORM_BUTTONS_STYLES}
                     onClick={() => {
                         (
+                            step === CREATE_ROUTINE_STEPS.MAIN_INFORMATION && isMainInformationValid ||
                             step === CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && hasAnyExerciseBeenSelected ||
                             step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && hasAnyDayBeenSelected
                         )
