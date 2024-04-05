@@ -8,6 +8,8 @@ import { groupExercisesList } from '../../utils/utils'
 import { STEPPERFORM_BUTTONS_STYLES } from './(styles)'
 import { HEADINGS } from '@/app/(styles)/variables'
 
+import { useRouter } from 'next/navigation'
+
 enum CREATE_ROUTINE_STEPS {
     EXERCISES_SELECTION = 0,
     DAYS_FREQUENCY_SELECTION = 1,
@@ -15,6 +17,8 @@ enum CREATE_ROUTINE_STEPS {
 
 const page = () => {
     const [groupedExercisesList, setGroupedExercisesList] = useState<any[]>([])
+
+    const router = useRouter()
 
     const {
         step,
@@ -49,30 +53,39 @@ const page = () => {
 
     // Frequency Days Selection
     const daysList = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-  
+
     const [selectedDays, setSelectedDays] = useState([]);
-  
-    const handleDayClick = (day:any) => {
-      setSelectedDays((prevDays: any) => {
-        if (prevDays.includes(day)) {
-          // If the day is already selected, unselect it
-          return prevDays.filter((d: any) => d !== day);
-        } else {
-          // If the day is not selected, select it
-          return [...prevDays, day];
-        }
-      });
+
+    const handleDayClick = (day: any) => {
+        setSelectedDays((prevDays: any) => {
+            if (prevDays.includes(day)) {
+                // If the day is already selected, unselect it
+                return prevDays.filter((d: any) => d !== day);
+            } else {
+                // If the day is not selected, select it
+                return [...prevDays, day];
+            }
+        });
     };
 
     const hasAnyDayBeenSelected = selectedDays.length > 0
 
+
+    const handleFinish = () => {
+        alert('Routine created')
+
+        // Save routine to the database
+
+        // Navigate to the routines page
+        router.push('/routines')
+    }
     return (
         <div>
-            <h2 className={`mb-3 ${HEADINGS.H2} font-bold`}>Create Routine</h2> 
+            <h2 className={`mb-3 ${HEADINGS.H2} font-bold`}>Create Routine</h2>
 
             {
                 step === CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && (
-                    <ExercisesSelection 
+                    <ExercisesSelection
                         groupedExercisesList={groupedExercisesList}
                         selectedExercisesList={selectedExercisesList}
                         handleSelectExercise={handleSelectExercise}
@@ -82,7 +95,7 @@ const page = () => {
 
             {
                 step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && (
-                    <DaysFrequencySelection 
+                    <DaysFrequencySelection
                         daysList={daysList}
                         selectedDaysList={selectedDays}
                         handleDayClick={handleDayClick}
@@ -99,7 +112,9 @@ const page = () => {
                 )
             }
 
-            <button
+            {
+                step !== CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION &&
+                <button
                 className={STEPPERFORM_BUTTONS_STYLES}
                 onClick={() => {
                     (
@@ -109,6 +124,20 @@ const page = () => {
                         && nextStep()
                 }}
             >Next</button>
+            }
+
+            {
+                step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && (
+                    <button
+                        className={STEPPERFORM_BUTTONS_STYLES}
+                        onClick={()=> {
+                            step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && 
+                                hasAnyDayBeenSelected && 
+                                handleFinish()
+                        }}
+                    >Finish</button>
+                )
+            }
         </div>
     )
 }
