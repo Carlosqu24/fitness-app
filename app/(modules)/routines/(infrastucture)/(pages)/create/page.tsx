@@ -121,6 +121,24 @@ const page = () => {
 
     const isMainInformationValid = formValues.name !== ''
 
+
+    // sets assignment
+    const handleInputSetAssignment = (exercise: any, inputValue: string) => {
+        setSelectedExercisesList(
+            selectedExercisesList.map((ex: any) => {
+                if (ex.id === exercise.id) {
+                    return {
+                        ...ex,
+                        sets: parseInt(inputValue)
+                    }
+                }
+
+                return ex
+            }
+            ))
+    }
+
+
     return (
         <div>
             <h2 className={`mb-3 ${HEADINGS.H2} font-bold`}>Create Routine</h2>
@@ -149,7 +167,7 @@ const page = () => {
                 step === CREATE_ROUTINE_STEPS.SET_ASSIGNMENT && (
                     <SetAssignment
                         selectedExercisesList={selectedExercisesList}
-                        setSelectedExercisesList={setSelectedExercisesList}
+                        handleInputSetAssignment={handleInputSetAssignment}
                     />
                 )
             }
