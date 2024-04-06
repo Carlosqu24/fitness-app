@@ -1,5 +1,5 @@
 import React from 'react'
-import { DEFAULT_CARDS_STYLES } from '@/app/(styles)/variables'
+import { DEFAULT_CARDS_STYLES, HEADINGS } from '@/app/(styles)/variables'
 
 interface SetAssignmentProps {
     selectedExercisesList: any[]
@@ -12,7 +12,7 @@ const SetAssignment = ({
 }: SetAssignmentProps) => {
     return (
         <>
-            <h3>Set assignment</h3>
+            <h3 className={`${HEADINGS.H3} mb-2 font-bold`}>Set assignment</h3>
 
             <div
 
@@ -24,11 +24,12 @@ const SetAssignment = ({
                         <div key={crypto.randomUUID()}
                             className={DEFAULT_CARDS_STYLES}
                         >
-                            <h4>{exercise.name}</h4>
+                            <h4 className={`${HEADINGS.H4} mb-2`}>{exercise.name}</h4>
 
                             <div>
-                                <label>Sets</label>
+                                <label htmlFor={`sets-id-${exercise.id}`}>Sets</label>
                                 <input
+                                    className='ml-3 text-center rounded-[6px]'
                                     type="number"
                                     name={`sets-id-${exercise.id}`}
                                     min={0}
