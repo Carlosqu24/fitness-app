@@ -9,6 +9,7 @@ interface ButtonsGroupProps {
     hasAnyExerciseBeenSelected: boolean
     hasAnyDayBeenSelected: boolean
     isMainInformationValid: boolean
+    everyExerciseSetsWereChanged: boolean
     handleFinish: () => void
 
 }
@@ -20,6 +21,7 @@ const ButtonsGroup = ({
     hasAnyExerciseBeenSelected,
     hasAnyDayBeenSelected,
     isMainInformationValid,
+    everyExerciseSetsWereChanged,
     handleFinish,
 }: ButtonsGroupProps) => {
     return (
@@ -41,6 +43,7 @@ const ButtonsGroup = ({
                         (
                             step === CREATE_ROUTINE_STEPS.MAIN_INFORMATION && isMainInformationValid ||
                             step === CREATE_ROUTINE_STEPS.EXERCISES_SELECTION && hasAnyExerciseBeenSelected ||
+                            step === CREATE_ROUTINE_STEPS.SET_ASSIGNMENT && everyExerciseSetsWereChanged ||
                             step === CREATE_ROUTINE_STEPS.DAYS_FREQUENCY_SELECTION && hasAnyDayBeenSelected
                         )
                             && nextStep()

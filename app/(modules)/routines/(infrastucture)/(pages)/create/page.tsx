@@ -129,7 +129,10 @@ const page = () => {
             ))
     }
 
-
+    const everyExerciseSetsWereChanged = 
+        selectedExercisesList
+            .every(exercise => exercise.sets > 0)
+    
     return (
         <div>
             <h2 className={`mb-3 ${HEADINGS.H2} font-bold`}>Create Routine</h2>
@@ -180,6 +183,7 @@ const page = () => {
                 hasAnyExerciseBeenSelected={hasAnyExerciseBeenSelected}
                 hasAnyDayBeenSelected={hasAnyDayBeenSelected}
                 isMainInformationValid={isMainInformationValid}
+                everyExerciseSetsWereChanged={everyExerciseSetsWereChanged}
                 handleFinish={handleFinish}
             />
         </div>
