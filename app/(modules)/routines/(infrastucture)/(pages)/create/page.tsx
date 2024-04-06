@@ -12,6 +12,7 @@ import ButtonsGroup from './components/FormSteps/ButtonsGroup/ButtonsGroup'
 import { useRoutines } from '../../(hooks)/RoutinesContext'
 import { useForm } from '@/app/(hooks)/useForm'
 import MainInformation from './components/FormSteps/MainInformation/MainInformation'
+import SetAssignment from './components/FormSteps/SetAssignment/SetAssignment'
 
 export enum CREATE_ROUTINE_STEPS {
     MAIN_INFORMATION = 0,
@@ -146,48 +147,10 @@ const page = () => {
 
             {
                 step === CREATE_ROUTINE_STEPS.SET_ASSIGNMENT && (
-                    <>
-                        <h3>Set assignment</h3>
-
-                        <div
-
-                            className='grid gap-4 grid-cols-1 lg:grid-cols-2 sm:gap-4'
-
-                        >
-                            {
-                                selectedExercisesList.map(exercise => (
-                                    <div key={crypto.randomUUID()}
-                                        className={DEFAULT_CARDS_STYLES}
-                                    >
-                                        <h4>{exercise.name}</h4>
-
-                                        <div>
-                                            <label>Sets</label>
-                                            <input
-                                                type="number"
-                                                name={`sets-id-${exercise.id}`}
-                                                value={exercise.sets}
-                                                onChange={(event) => {
-                                                    setSelectedExercisesList(
-                                                        selectedExercisesList.map(ex => {
-                                                            if (ex.id === exercise.id) {
-                                                                return {
-                                                                    ...ex,
-                                                                    sets: parseInt(event.target.value)
-                                                                }
-                                                            }
-
-                                                            return ex
-                                                        }
-                                                        ))
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    </>
+                    <SetAssignment
+                        selectedExercisesList={selectedExercisesList}
+                        setSelectedExercisesList={setSelectedExercisesList}
+                    />
                 )
             }
 
