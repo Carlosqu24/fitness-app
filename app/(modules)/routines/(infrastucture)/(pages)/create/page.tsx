@@ -5,8 +5,7 @@ import ExercisesSelection from './components/FormSteps/ExercisesSelection/Exerci
 import DaysFrequencySelection from './components/FormSteps/DaysFrequencySelection/DaysFrequencySelection'
 import { supabase } from '@/app/(config)/supabase'
 import { groupExercisesList } from '../../utils/utils'
-import { STEPPERFORM_BUTTONS_STYLES } from './(styles)'
-import { HEADINGS } from '@/app/(styles)/variables'
+import { DEFAULT_CARDS_STYLES, HEADINGS } from '@/app/(styles)/variables'
 
 import { useRouter } from 'next/navigation'
 import ButtonsGroup from './components/FormSteps/ButtonsGroup/ButtonsGroup'
@@ -17,7 +16,8 @@ import MainInformation from './components/FormSteps/MainInformation/MainInformat
 export enum CREATE_ROUTINE_STEPS {
     MAIN_INFORMATION = 0,
     EXERCISES_SELECTION = 1,
-    DAYS_FREQUENCY_SELECTION = 2,
+    SET_ASSIGNMENT = 2,
+    DAYS_FREQUENCY_SELECTION = 3,
 }
 
 const page = () => {
@@ -25,7 +25,7 @@ const page = () => {
 
     const router = useRouter()
 
-    const { values: formValues, handleInputChange } = useForm<{name: string, description: string}>({
+    const { values: formValues, handleInputChange } = useForm<{ name: string, description: string }>({
         name: '',
         description: ''
     })
@@ -42,7 +42,16 @@ const page = () => {
     const handleGetExercisesData = async () => {
         const { data } = await supabase.from('Exercises').select()
 
-        const groupedExercises = groupExercisesList(data)
+        const formattedData =
+            data !== null
+                ? data.map((exercise: any) => ({
+                    ...exercise,
+                    sets: 0
+                }))
+                : []
+
+        // const groupedExercises = groupExercisesList(data)
+        const groupedExercises = groupExercisesList(formattedData)
 
         setGroupedExercisesList(Object.entries(groupedExercises || {}))
     }
@@ -83,6 +92,13 @@ const page = () => {
 
     const hasAnyDayBeenSelected = selectedDays.length > 0
 
+    const calculateEstimatedCaloriesToBurn = () => {
+        return selectedExercisesList
+            .reduce(
+                (acc, exercise) => acc + exercise?.estimatedCaloriesToBurnPerMinute ?? 0, 0
+            )
+            * selectedExercisesList.length
+    }
 
     const handleFinish = () => {
         alert('Routine created')
@@ -92,13 +108,13 @@ const page = () => {
             id: crypto.randomUUID(),
             name: formValues.name,
             description: formValues.description,
-            totalExercisesCount: 0,
-            estimatedCaloriesToBurn: 0,
+            totalExercisesCount: selectedExercisesList.length,
+            estimatedCaloriesToBurn: calculateEstimatedCaloriesToBurn(),
             estimatedTime: 0,
             exercisesList: selectedExercisesList,
             workoutSessionLogsList: []
         })
-        
+
         router.push('/routines')
     }
 
@@ -125,6 +141,53 @@ const page = () => {
                         selectedExercisesList={selectedExercisesList}
                         handleSelectExercise={handleSelectExercise}
                     />
+                )
+            }
+
+            {
+                step === CREATE_ROUTINE_STEPS.SET_ASSIGNMENT && (
+                    <>
+                        <h3>Set assignment</h3>
+
+                        <div
+
+                            className='grid gap-4 grid-cols-1 lg:grid-cols-2 sm:gap-4'
+
+                        >
+                            {
+                                selectedExercisesList.map(exercise => (
+                                    <div key={crypto.randomUUID()}
+                                        className={DEFAULT_CARDS_STYLES}
+                                    >
+                                        <h4>{exercise.name}</h4>
+
+                                        <div>
+                                            <label>Sets</label>
+                                            <input
+                                                type="number"
+                                                name={`sets-id-${exercise.id}`}
+                                                value={exercise.sets}
+                                                onChange={(event) => {
+                                                    setSelectedExercisesList(
+                                                        selectedExercisesList.map(ex => {
+                                                            if (ex.id === exercise.id) {
+                                                                return {
+                                                                    ...ex,
+                                                                    sets: parseInt(event.target.value)
+                                                                }
+                                                            }
+
+                                                            return ex
+                                                        }
+                                                        ))
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </>
                 )
             }
 
