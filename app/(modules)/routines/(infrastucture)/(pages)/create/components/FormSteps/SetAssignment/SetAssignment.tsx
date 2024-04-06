@@ -31,9 +31,15 @@ const SetAssignment = ({
                                 <input
                                     type="number"
                                     name={`sets-id-${exercise.id}`}
+                                    min={0}
                                     value={exercise.sets}
                                     onChange={(event) => {
-                                        handleInputSetAssignment(exercise, event.target.value)
+                                        handleInputSetAssignment(
+                                            exercise, 
+                                            event.target.value === "" 
+                                                ? "0"
+                                                : event.target.value
+                                        )
                                     }}
                                 />
                             </div>

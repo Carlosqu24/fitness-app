@@ -42,17 +42,8 @@ const page = () => {
 
     const handleGetExercisesData = async () => {
         const { data } = await supabase.from('Exercises').select()
-
-        const formattedData =
-            data !== null
-                ? data.map((exercise: any) => ({
-                    ...exercise,
-                    sets: 0
-                }))
-                : []
-
-        // const groupedExercises = groupExercisesList(data)
-        const groupedExercises = groupExercisesList(formattedData)
+        
+        const groupedExercises = groupExercisesList(data)
 
         setGroupedExercisesList(Object.entries(groupedExercises || {}))
     }
@@ -129,7 +120,7 @@ const page = () => {
                 if (ex.id === exercise.id) {
                     return {
                         ...ex,
-                        sets: parseInt(inputValue)
+                        sets: parseInt(inputValue ?? 0) ?? 0
                     }
                 }
 
