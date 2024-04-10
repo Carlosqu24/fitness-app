@@ -74,3 +74,10 @@ export interface SessionForm {
     weightUnit: string;
     restTimeInMinutes: number;
   }
+
+  export enum CREATE_ROUTINE_STEPS {
+    MAIN_INFORMATION = 0,
+    EXERCISES_SELECTION = 1,
+    SET_ASSIGNMENT = 2,
+    DAYS_FREQUENCY_SELECTION = 3,
+}

@@ -54,7 +54,11 @@ const Page = ({ params }: any) => {
 
         <div className='flex flex-col items-end lg:flex-row'>
           <span className='ml-auto lg:mr-5 text-[22px] lg:text-[24px]'>{routine?.estimatedCaloriesToBurn ?? 0} calories 🔥</span>
-          <span className='text-[22px] lg:text-[24px]'>{routine?.estimatedTime} min 🕙</span>
+          {
+            routine?.estimatedTime === 0 
+              ? <span className='text-[22px] lg:text-[24px]'>No time estimation</span>
+              : <span className='text-[22px] lg:text-[24px]'>{routine?.estimatedTime} min 🕙</span>
+          }
         </div>
       </div>
 
