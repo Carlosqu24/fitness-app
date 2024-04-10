@@ -21,7 +21,7 @@ const MainInformation = ({
                                 placeholder="Test name"
                                 required={true}
                                 value={name}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e)}
                             />
                         </div>
 
@@ -35,7 +35,7 @@ const MainInformation = ({
                                 placeholder="Test description"
                                 required={false}
                                 value={description}
-                                onChange={handleInputChange}
+                                onChange={(e) => handleInputChange(e)}
                             />
                         </div>
                     

@@ -13,15 +13,9 @@ import { useRoutines } from '../../(hooks)/RoutinesContext'
 import { useForm } from '@/app/(hooks)/useForm'
 import MainInformation from './components/FormSteps/MainInformation/MainInformation'
 import SetAssignment from './components/FormSteps/SetAssignment/SetAssignment'
+import { CREATE_ROUTINE_STEPS } from '../../../(domain)/entities'
 
-export enum CREATE_ROUTINE_STEPS {
-    MAIN_INFORMATION = 0,
-    EXERCISES_SELECTION = 1,
-    SET_ASSIGNMENT = 2,
-    DAYS_FREQUENCY_SELECTION = 3,
-}
-
-const page = () => {
+const Page = () => {
     const [groupedExercisesList, setGroupedExercisesList] = useState<any[]>([])
 
     const router = useRouter()
@@ -54,6 +48,7 @@ const page = () => {
 
     useEffect(() => {
         handleData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const [selectedExercisesList, setSelectedExercisesList] = useState<any[]>([])
@@ -190,4 +185,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

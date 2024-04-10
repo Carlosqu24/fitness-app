@@ -1,5 +1,5 @@
 import React from 'react'
-import { CREATE_ROUTINE_STEPS } from '../../../page'
+import { CREATE_ROUTINE_STEPS } from '@/app/(modules)/routines/(domain)/entities' 
 import { STEPPERFORM_BUTTONS_STYLES } from '../../../(styles)'
 
 interface ButtonsGroupProps {
