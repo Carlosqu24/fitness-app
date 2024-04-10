@@ -3,7 +3,7 @@ import Form from '../../(components)/(Form)/Form'
 import isAuth from '@/app/components/PrivateRoute/PrivateRoute'
 import { HEADINGS } from '@/app/(styles)/variables'
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <h1 className={`${HEADINGS.H2} text-center font-bold mb-8`}>Log In</h1>
@@ -12,4 +12,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

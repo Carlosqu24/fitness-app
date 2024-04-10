@@ -7,7 +7,7 @@ import isAuth from '@/app/components/PrivateRoute/PrivateRoute'
 import { BUTTON_STYLES } from '@/app/(styles)'
 import Link from 'next/link'
 
-const page = () => {
+const Page = () => {
   return (
     <>
         <h2 className={`${HEADINGS.H1} font-bold`}>Routines</h2>
@@ -24,4 +24,4 @@ const page = () => {
   )
 }
 
-export default isAuth(page)
+export default isAuth(Page)
