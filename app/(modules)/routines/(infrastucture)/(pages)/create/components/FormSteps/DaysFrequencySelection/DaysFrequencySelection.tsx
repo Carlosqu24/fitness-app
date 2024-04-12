@@ -17,15 +17,17 @@ const DaysFrequencySelection = (
 
       <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-4'>
       {
-        daysList.map((day, index) => (
-          <div 
+        daysList.map((day, index) => {
+
+          const isSelected = selectedDaysList.includes(day)
+
+          const bgColor = isSelected ? '#5C5168' : '#464646'
+
+          return (
+            <div 
             key={index} 
             className={`
-              bg-[${
-                selectedDaysList.includes(day) 
-                  ? '#5C5168' 
-                  : '#464646'
-              }] 
+              bg-[${bgColor}]
               hover:bg-[#5C5168] 
               border-solid 
               border-[1px] 
@@ -40,7 +42,8 @@ const DaysFrequencySelection = (
           >
             {day}
           </div>
-        ))
+          )
+        })
       }
       </div>
     </div>

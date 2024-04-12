@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <Navbar/>
-          <main className="w-full min-h-screen p-2 sm:p-8">
+          <main className="w-full min-h-screen p-2 sm:p-8 mb-20">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional" />
             <RoutinesProvider>
               {children}
