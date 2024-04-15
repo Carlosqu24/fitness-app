@@ -11,6 +11,7 @@ import { INITIAL_SET, sessionFormInitialState, workoutSessionInitialState } from
 import isAuth from '@/app/components/PrivateRoute/PrivateRoute';
 import Modal from '@/app/components/Modal/Modal';
 import Accordion from '@/app/components/Accordion/Accordion';
+import { formatDate } from '@/app/(helpers)/date';
 
 const Page = ({ params }: any) => {
     const {
@@ -368,11 +369,11 @@ const Page = ({ params }: any) => {
                                         key={index} 
                                         className={`
                                             ${DEFAULT_CARDS_STYLES} flex justify-between flex-col text-[#fff]`} 
-                                        title={workoutSession.date}
+                                        title={formatDate(workoutSession.date)}
                                     >
                                         
                                             {workoutSession.exercises.map((exercise) => (
-                                                <div key={exercise.id} className='flex flex-col'>
+                                                <div key={exercise.id} className='flex flex-col mt-2'>
                                                   <h3 className="text-xl font-bold mb-2">{exercise.name}</h3>
                                                   {exercise.sets.map((set, index) => (
                                                     <p key={index}>
