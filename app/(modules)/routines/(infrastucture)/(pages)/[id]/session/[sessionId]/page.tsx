@@ -362,16 +362,26 @@ const Page = ({ params }: any) => {
                         
                         <div className="grid gap-4 grid-cols-1">
                             {
-                                [1, 2, 3].map((_, index) => (
+                                routine?.workoutSessionLogsList.map((workoutSession, index) => (
 
                                     <Accordion 
                                         key={index} 
                                         className={`
-                                            ${DEFAULT_CARDS_STYLES} flex justify-between text-[#fff]`} 
-                                        title={`Session ${index + 1}`}
+                                            ${DEFAULT_CARDS_STYLES} flex justify-between flex-col text-[#fff]`} 
+                                        title={workoutSession.date}
                                     >
-                                        <div className='w-full flex justify-between'><span>Session {index + 1}</span>
-                                        <span>Exercises</span></div>
+                                        
+                                            {workoutSession.exercises.map((exercise) => (
+                                                <div key={exercise.id} className='flex flex-col'>
+                                                  <h3 className="text-xl font-bold mb-2">{exercise.name}</h3>
+                                                  {exercise.sets.map((set, index) => (
+                                                    <p key={index}>
+                                                      <strong>Set {set.number}:</strong> {set.formValues.reps} reps * {set.formValues.weight}{set.formValues.weightUnit} - {set.formValues.restTimeInMinutes} min
+                                                    </p>
+                                                  ))}
+                                                </div>
+                                              ))}
+                                        
                                     </Accordion>
                                 ))
                             }
