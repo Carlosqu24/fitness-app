@@ -2,13 +2,15 @@
 
 import { useForm } from '@/app/(hooks)/useForm';
 import { BUTTON_STYLES } from '@/app/(styles)';
-import { HEADINGS } from '@/app/(styles)/variables';
+import { DEFAULT_CARDS_STYLES, HEADINGS } from '@/app/(styles)/variables';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { useRoutines } from '../../../../(hooks)/RoutinesContext';
 import { EXERCISE_DEFAULT_VALUE, ROUTINE_DEFAULT_VALUE, Routine, SessionForm } from '@/app/(modules)/routines/(domain)/entities';
 import { INITIAL_SET, sessionFormInitialState, workoutSessionInitialState } from '@/app/(modules)/routines/(domain)/data';
 import isAuth from '@/app/components/PrivateRoute/PrivateRoute';
+import Modal from '@/app/components/Modal/Modal';
+import Accordion from '@/app/components/Accordion/Accordion';
 
 const Page = ({ params }: any) => {
     const {
@@ -31,6 +33,8 @@ const Page = ({ params }: any) => {
     const [currentSet, setCurrentSet] = useState(INITIAL_SET)
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
     const [workoutSession, setWorkoutSession] = useState(workoutSessionInitialState)
+
+        const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
 
@@ -344,7 +348,36 @@ const Page = ({ params }: any) => {
         <>
             <h2 className={sessionPageStyles.pageTitle}>{currentExercise.name}</h2>
 
-            <h4>Set {currentSet}/{allSets}</h4>
+            <div className='w-full flex justify-between'>
+                <h4>Set {currentSet}/{allSets}</h4>
+
+                <Modal
+                    openModalButton={
+                        <button className={`${BUTTON_STYLES} rounded-[6px]`}>
+                            Prev workout sessions
+                        </button>
+                    }
+                >
+                        <h1 className="text-2xl">Previous workout sessions</h1>
+                        
+                        <div className="grid gap-4 grid-cols-1">
+                            {
+                                [1, 2, 3].map((_, index) => (
+
+                                    <Accordion 
+                                        key={index} 
+                                        className={`
+                                            ${DEFAULT_CARDS_STYLES} flex justify-between text-[#fff]`} 
+                                        title={`Session ${index + 1}`}
+                                    >
+                                        <div className='w-full flex justify-between'><span>Session {index + 1}</span>
+                                        <span>Exercises</span></div>
+                                    </Accordion>
+                                ))
+                            }
+                        </div>
+                </Modal>
+            </div>
 
             <div className={sessionPageStyles.formGroup}>
                 <label className={sessionPageStyles.formLabel} htmlFor="reps">Reps</label>
@@ -414,6 +447,8 @@ const Page = ({ params }: any) => {
                     onClick={handleFinish}
                 >Finish</Link>
             </div>
+
+            
         </>
     )
 }
