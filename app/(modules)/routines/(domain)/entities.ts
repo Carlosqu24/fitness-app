@@ -57,10 +57,13 @@ export interface WorkoutSessionExercise {
 }
 
 interface WorkoutSessionSet {
+    formValues: {
+        reps: number;
+        weight: number;
+        weightUnit: string;
+        restTimeInMinutes: number;
+    }
     number: number;
-    reps: number;
-    weight: number;
-    weightUnit: string;
 }
 
 export interface FitnessAppContext {
