@@ -2,16 +2,14 @@
 
 import { useForm } from '@/app/(hooks)/useForm';
 import { BUTTON_STYLES } from '@/app/(styles)';
-import { DEFAULT_CARDS_STYLES, HEADINGS } from '@/app/(styles)/variables';
+import { HEADINGS } from '@/app/(styles)/variables';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { useRoutines } from '../../../../(hooks)/RoutinesContext';
 import { EXERCISE_DEFAULT_VALUE, ROUTINE_DEFAULT_VALUE, Routine, SessionForm } from '@/app/(modules)/routines/(domain)/entities';
 import { INITIAL_SET, sessionFormInitialState, workoutSessionInitialState } from '@/app/(modules)/routines/(domain)/data';
 import isAuth from '@/app/components/PrivateRoute/PrivateRoute';
-import Modal from '@/app/components/Modal/Modal';
-import Accordion from '@/app/components/Accordion/Accordion';
-import { formatDate } from '@/app/(helpers)/date';
+import PreviousWorkoutSessionsModal from './components/PreviousWorkoutSessionsModal/PreviousWorkoutSessionsModal';
 
 const Page = ({ params }: any) => {
     const {
@@ -33,10 +31,7 @@ const Page = ({ params }: any) => {
     )
     const [currentSet, setCurrentSet] = useState(INITIAL_SET)
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-    const [workoutSession, setWorkoutSession] = useState(workoutSessionInitialState)
-
-        const [isOpen, setIsOpen] = useState(false);
-
+    
     useEffect(() => {
 
         setRoutine(
@@ -352,42 +347,7 @@ const Page = ({ params }: any) => {
             <div className='w-full flex justify-between'>
                 <h4>Set {currentSet}/{allSets}</h4>
 
-                <Modal
-                    openModalButton={
-                        <button className={`${BUTTON_STYLES} rounded-[6px]`}>
-                            Prev workout sessions
-                        </button>
-                    }
-                >
-                        <h1 className="text-2xl">Previous workout sessions</h1>
-                        
-                        <div className="grid gap-4 grid-cols-1">
-                            {
-                                routine?.workoutSessionLogsList.map((workoutSession, index) => (
-
-                                    <Accordion 
-                                        key={index} 
-                                        className={`
-                                            ${DEFAULT_CARDS_STYLES} flex justify-between flex-col text-[#fff]`} 
-                                        title={formatDate(workoutSession.date)}
-                                    >
-                                        
-                                            {workoutSession.exercises.map((exercise) => (
-                                                <div key={exercise.id} className='flex flex-col mt-2'>
-                                                  <h3 className="text-xl font-bold mb-2">{exercise.name}</h3>
-                                                  {exercise.sets.map((set, index) => (
-                                                    <p key={index}>
-                                                      <strong>Set {set.number}:</strong> {set.formValues.reps} reps * {set.formValues.weight}{set.formValues.weightUnit} - {set.formValues.restTimeInMinutes} min
-                                                    </p>
-                                                  ))}
-                                                </div>
-                                              ))}
-                                        
-                                    </Accordion>
-                                ))
-                            }
-                        </div>
-                </Modal>
+                <PreviousWorkoutSessionsModal routine={routine} />
             </div>
 
             <div className={sessionPageStyles.formGroup}>
