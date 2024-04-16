@@ -32,14 +32,20 @@ export const routinesList: Routine[] = [
             name: "Standard push-ups",
             sets: [{
               number: 1,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }, {
               number: 2,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }]
           },
           {
@@ -47,14 +53,20 @@ export const routinesList: Routine[] = [
             name: "Diamond push-ups",
             sets: [{
               number: 1,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }, {
               number: 2,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }]
           },
         ]
@@ -92,14 +104,20 @@ export const routinesList: Routine[] = [
             name: "Standard pull-ups",
             sets: [{
               number: 1,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }, {
               number: 2,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }]
           },
           {
@@ -107,14 +125,20 @@ export const routinesList: Routine[] = [
             name: "Deadlift",
             sets: [{
               number: 1,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }, {
               number: 2,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }]
           },
         ]
@@ -152,14 +176,20 @@ export const routinesList: Routine[] = [
             name: "Standard bench press",
             sets: [{
               number: 1,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }, {
               number: 2,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }]
           },
           {
@@ -167,14 +197,20 @@ export const routinesList: Routine[] = [
             name: "Incline bench press",
             sets: [{
               number: 1,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }, {
               number: 2,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }]
           },
           {
@@ -182,14 +218,20 @@ export const routinesList: Routine[] = [
             name: "Pecs flys",
             sets: [{
               number: 1,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }, {
               number: 2,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }]
           },
           {
@@ -197,14 +239,20 @@ export const routinesList: Routine[] = [
             name: "Pecs extensions",
             sets: [{
               number: 1,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }, {
               number: 2,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }]
           }
         ]
@@ -242,30 +290,42 @@ export const routinesList: Routine[] = [
             name: "Squats",
             sets: [{
               number: 1,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }, {
               number: 2,
-              reps: 10,
-              weight: 1000,
-              weightUnit: "kg",
+              formValues: {
+                reps: 10,
+                weight: 1000,
+                weightUnit: "kg",
+                restTimeInMinutes: 1
+              }
             }]
           },
           {
             id: "b84c35c3-b489-4b00-8a46-e8ec8fb4c88e",
             name: "Lunges",
             sets: [{
-                number: 1,
+              number: 1,
+              formValues: {
                 reps: 10,
                 weight: 1000,
                 weightUnit: "kg",
-              }, {
-                number: 2,
+                restTimeInMinutes: 1
+              }
+            }, {
+              number: 2,
+              formValues: {
                 reps: 10,
                 weight: 1000,
                 weightUnit: "kg",
-              }]
+                restTimeInMinutes: 1
+              }
+            }]
           },
 
         ]
@@ -370,7 +430,7 @@ export const fitnessAppContextInitialState: FitnessAppContext = {
       ],
       "workoutSessionLogsList": []
     }, {
-      "id": "5ae8f0e1-d8be-4c1e-8ac6-22d06df8eea4" ,
+      "id": "5ae8f0e1-d8be-4c1e-8ac6-22d06df8eea4",
       "name": "Back",
       "description": "Description 2",
       "totalExercisesCount": 2,
@@ -413,7 +473,7 @@ export const fitnessAppContextInitialState: FitnessAppContext = {
           "sets": 4
         },
         {
-          "id": "237c583d-ab42-4b6e-8e2d-60349bfe6b13" ,
+          "id": "237c583d-ab42-4b6e-8e2d-60349bfe6b13",
           "name": "Triceps extensions",
           "estimatedTime": 1,
           "sets": 4
