@@ -29,7 +29,7 @@ const PreviousWorkoutSessionsModal = ({ routine }: PreviousWorkoutSessionsModalP
 
                         <Accordion
                             key={index}
-                            className={`${DEFAULT_CARDS_STYLES} flex justify-between flex-col text-[#fff]`}
+                            className={`${DEFAULT_CARDS_STYLES} hover:bg-[#525252] flex justify-between flex-col text-[#fff]`}
                             title={formatDate(workoutSession.date)}
                         >
 
