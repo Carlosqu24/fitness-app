@@ -1,7 +1,7 @@
 import React from 'react'
 import { formatDate } from '@/app/(helpers)/date'
 import { BUTTON_STYLES } from '@/app/(styles)'
-import { DEFAULT_CARDS_STYLES } from '@/app/(styles)/variables'
+import { DEFAULT_CARDS_STYLES, HEADINGS } from '@/app/(styles)/variables'
 import Accordion from '@/app/components/Accordion/Accordion'
 import Modal from '@/app/components/Modal/Modal'
 
@@ -21,7 +21,7 @@ const PreviousWorkoutSessionsModal = ({ routine }: PreviousWorkoutSessionsModalP
                 </button>
             }
         >
-            <h1 className="text-2xl">Previous workout sessions</h1>
+            <h1 className={`${HEADINGS.H3} font-bold`}>Previous workout sessions</h1>
 
             <div className="grid gap-4 grid-cols-1">
                 {
