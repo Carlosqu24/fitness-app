@@ -9,6 +9,7 @@ import { useRoutines } from '../../../../(hooks)/RoutinesContext';
 import { EXERCISE_DEFAULT_VALUE, ROUTINE_DEFAULT_VALUE, Routine, SessionForm } from '@/app/(modules)/routines/(domain)/entities';
 import { INITIAL_SET, sessionFormInitialState, workoutSessionInitialState } from '@/app/(modules)/routines/(domain)/data';
 import isAuth from '@/app/components/PrivateRoute/PrivateRoute';
+import PreviousWorkoutSessionsModal from './components/PreviousWorkoutSessionsModal/PreviousWorkoutSessionsModal';
 
 const Page = ({ params }: any) => {
     const {
@@ -30,8 +31,7 @@ const Page = ({ params }: any) => {
     )
     const [currentSet, setCurrentSet] = useState(INITIAL_SET)
     const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
-    const [workoutSession, setWorkoutSession] = useState(workoutSessionInitialState)
-
+    
     useEffect(() => {
 
         setRoutine(
@@ -344,7 +344,11 @@ const Page = ({ params }: any) => {
         <>
             <h2 className={sessionPageStyles.pageTitle}>{currentExercise.name}</h2>
 
-            <h4>Set {currentSet}/{allSets}</h4>
+            <div className='w-full flex justify-between'>
+                <h4>Set {currentSet}/{allSets}</h4>
+
+                <PreviousWorkoutSessionsModal routine={routine} />
+            </div>
 
             <div className={sessionPageStyles.formGroup}>
                 <label className={sessionPageStyles.formLabel} htmlFor="reps">Reps</label>
@@ -414,6 +418,8 @@ const Page = ({ params }: any) => {
                     onClick={handleFinish}
                 >Finish</Link>
             </div>
+
+            
         </>
     )
 }
