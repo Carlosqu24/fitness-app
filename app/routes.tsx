@@ -1,6 +1,13 @@
 export const ROUTES = {
     HOME: '/',
     ROUTINES: '/routines',
+    ROUTINE_VIEW: '/routines/[id]',
+    ROUTINE_EDIT: '/routines/[id]/edit',
+
+    WORKOUT_SESSION_VIEW: '/routines/[routineId]/session/[sessionId]/view',
+    WORKOUT_SESSION_CREATE: '/routines/[routineId]/session/[sessionId]',
+    WORKOUT_SESSION_EDIT: '/routines/[routineId]/session/edit/[sessionId]',
+    
     PROFILE: '/profile',
 
     SIGN_UP: "/authentication/sign-up",
