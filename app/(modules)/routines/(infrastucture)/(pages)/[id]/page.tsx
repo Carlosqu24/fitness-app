@@ -66,7 +66,7 @@ const Page = ({ params }: any) => {
         exersisesList={exercisesListFiltered}
       />
 
-      <WorkoutSessionsGrid workoutSessionsList={workoutSessionLogsList} />
+      <WorkoutSessionsGrid routineId={routine?.id ?? ""} workoutSessionsList={workoutSessionLogsList} />
     </>
   )
 }
