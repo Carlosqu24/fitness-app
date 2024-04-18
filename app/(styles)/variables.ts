@@ -32,7 +32,7 @@ export const PADDING = ""
 
 export const HEADINGS = {
     H1: "text-[46px] sm:text-[52px]",
-    H2: "text-[42px]",
+    H2: "text-[38px]",
     H3: "text-[28px] sm:text-[32px]",
     H4: "",
     H5: "",
