@@ -2,8 +2,6 @@ import React from 'react'
 // import { routinesList } from '@/app/(modules)/routines/domain/data'
 import Link from 'next/link'
 import { useRoutines } from '../../../(hooks)/RoutinesContext'
-import { COLORS } from '@/app/(styles)/variables'
-
 
 // #2F3543
 

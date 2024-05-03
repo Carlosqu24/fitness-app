@@ -29,7 +29,7 @@ const SetAssignment = ({
                             <div>
                                 <label htmlFor={`sets-id-${exercise.id}`}>Sets</label>
                                 <input
-                                    className='ml-3 text-center rounded-[6px]'
+                                    className='ml-3 text-center rounded-[6px] bg-[#3d3d3d] text-[#fff]'
                                     type="number"
                                     name={`sets-id-${exercise.id}`}
                                     min={0}
