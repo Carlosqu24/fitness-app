@@ -6,8 +6,21 @@ import { HEADINGS } from '@/app/(styles)/variables'
 import isAuth from '@/app/components/PrivateRoute/PrivateRoute'
 import { BUTTON_STYLES } from '@/app/(styles)'
 import Link from 'next/link'
+import { useRoutines } from './(infrastucture)/(hooks)/RoutinesContext'
 
 const Page = () => {
+
+  const {resetRoutines} = useRoutines()
+
+  const handleResetRoutines = () => {
+    const res = prompt('Do you want to reset all the routines? Type "yes" to confirm.')
+
+    if ( res?.toLocaleLowerCase() === "yes") {
+      resetRoutines()
+      alert('Routines reseted')
+    }
+  }
+
   return (
     <>
         <h2 className={`${HEADINGS.H1} font-bold`}>Routines</h2>
@@ -18,6 +31,13 @@ const Page = () => {
         >
           Create Routine
         </Link>
+
+        <button 
+          className={`${BUTTON_STYLES} ml-3 rounded-[6px]`}
+          onClick={handleResetRoutines}
+        >
+          Reset routines
+        </button>
 
         <RoutinesGrid />
     </>
