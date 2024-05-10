@@ -2,8 +2,6 @@ import React from 'react'
 // import { routinesList } from '@/app/(modules)/routines/domain/data'
 import Link from 'next/link'
 import { useRoutines } from '../../../(hooks)/RoutinesContext'
-import { COLORS } from '@/app/(styles)/variables'
-
 
 // #2F3543
 
@@ -52,7 +50,11 @@ const RoutinesGrid = () => {
                   <h3 className='md:text-[32px] text-[26px] font-bold sm:my-0'>{routine.name}</h3>
                   <div className='flex w-full justify-between'>
                     <span className='text-[#d4cee8]'>{routine.totalExercisesCount} exercises</span>
-                    <span className='text-[#d4cee8] mt-auto'>{routine.estimatedTime} min</span>
+                    {
+                                    routine.estimatedTime === 0 
+                                        ? <span className='text-[#d4cee8]'>No time estimation</span>
+                                        : <span className='text-[#d4cee8]'>{routine.estimatedTime} min</span>
+                                }
                   </div>
                 </article>
               </Link>

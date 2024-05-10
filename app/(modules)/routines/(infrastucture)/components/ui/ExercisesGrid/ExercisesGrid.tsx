@@ -23,7 +23,11 @@ const ExercisesGrid = (props: Props) => {
                               }}    
                         >
                                 <h3 className='inline font-bold'>{exercise.name}</h3>
-                                <span className='text-[#d4cee8]'>{exercise.estimatedTime} min</span>
+                                {
+                                    exercise.estimatedTime === 0 || exercise.estimatedTime === undefined
+                                        ? <span className='text-[#d4cee8]'>No time estimation</span>
+                                        : <span className='text-[#d4cee8]'>{exercise.estimatedTime} min</span>
+                                }
                         </div>
                     ))
                 }

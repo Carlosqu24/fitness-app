@@ -11,6 +11,8 @@ interface RoutinesContextData {
   workoutSession: any;
   addRoutine: (routine: Routine) => void;
   addWorkoutSession: (newRoutinesList: Routine[]) => void;
+  resetRoutines: () => void;
+  deleteRoutineById: (id: string) => void
   // Add other actions as needed
 }
 
@@ -21,6 +23,8 @@ export const RoutinesContext = createContext<RoutinesContextData>({
   workoutSession: {},
   addRoutine: () => { },
   addWorkoutSession: () => { },
+  resetRoutines: () => { },
+  deleteRoutineById: (id: string) => { }
 });
 
 // Create a provider component
@@ -46,10 +50,28 @@ export const RoutinesProvider: React.FC<{ children: any }> = ({ children }) => {
     })
   };
 
+  const deleteRoutineById = (routineId: string) => {
+    const newRoutinesList = routinesList.filter(routine => routine.id !== routineId)
+    
+    setRoutinesList(newRoutinesList);
+    setValue({
+      ...storedValue,
+      routinesList: newRoutinesList
+    })
+  }
+
   const addWorkoutSession = (newRoutinesList: Routine[]) => {
     setValue({
       ...storedValue,
       routinesList: newRoutinesList
+    })
+  }
+
+  const resetRoutines = () => {
+    setRoutinesList(fitnessAppContextInitialState.routinesList);
+    setValue({
+      ...storedValue,
+      routinesList: fitnessAppContextInitialState.routinesList
     })
   }
 
@@ -59,7 +81,9 @@ export const RoutinesProvider: React.FC<{ children: any }> = ({ children }) => {
       setRoutinesList,
       addRoutine,
       addWorkoutSession,
-      workoutSession
+      workoutSession,
+      resetRoutines,
+      deleteRoutineById
     }}>
       {children}
     </RoutinesContext.Provider>
