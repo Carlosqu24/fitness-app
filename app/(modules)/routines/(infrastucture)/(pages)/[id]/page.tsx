@@ -73,7 +73,7 @@ const Page = ({ params }: any) => {
           }
 
           <button
-            className={`${BUTTON_STYLES} ml-8 rounded-[6px] bg-red-500`}
+            className={`${BUTTON_STYLES} ml-8 rounded-[6px] bg-red-500 hover:bg-red-400`}
             onClick={()=> {
               handleDeleteRoutine()
             }}

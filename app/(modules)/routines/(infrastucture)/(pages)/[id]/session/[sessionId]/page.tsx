@@ -347,7 +347,12 @@ const Page = ({ params }: any) => {
             <div className='w-full flex justify-between'>
                 <h4>Set {currentSet}/{allSets}</h4>
 
-                <PreviousWorkoutSessionsModal routine={routine} />
+                {
+                    routine?.workoutSessionLogsList.length > 0 && (
+                        <PreviousWorkoutSessionsModal routine={routine} />
+                    )
+                }
+
             </div>
 
             <div className={sessionPageStyles.formGroup}>
