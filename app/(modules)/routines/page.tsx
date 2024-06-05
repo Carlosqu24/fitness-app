@@ -33,7 +33,7 @@ const Page = () => {
         </Link>
 
         <button 
-          className={`${BUTTON_STYLES} ml-3 rounded-[6px]`}
+          className={`${BUTTON_STYLES} ml-3 rounded-[6px] bg-red-500 hover:bg-red-400`}
           onClick={handleResetRoutines}
         >
           Reset routines

@@ -104,7 +104,7 @@ const Navbar = () => {
           isLogged &&
             <Link
               href={"/"}
-              className={`${BUTTON_STYLES}`}
+              className={`${BUTTON_STYLES} rounded-[6px]`}
               onClick={signOut}
             >Log Out</Link>
         }
